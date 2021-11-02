@@ -29,6 +29,22 @@ const id = {
   },
 };
 
+const roleEmojis = {
+  "⚪": id.roles.whiteTeam,
+  "🔴": id.roles.redTeam,
+  "🟠": id.roles.orangeTeam,
+  "1️⃣": id.roles.teamOne,
+  "2️⃣": id.roles.teamTwo,  
+  "3️⃣": id.roles.teamThree,
+  "4️⃣": id.roles.teamFour,
+  "5️⃣": id.roles.teamFive,
+  "6️⃣": id.roles.teamSix,
+  "7️⃣": id.roles.teamSeven,
+  "8️⃣": id.roles.teamEight,
+  "9️⃣": id.roles.teamNine,
+  "🔟": id.roles.teamTen,
+};
+
 // Initializes bot with the needed properties of Client
 const client = new Client({
   partials: ["MESSAGE", "CHANNEL", "REACTION"],
@@ -126,23 +142,7 @@ client.on("messageReactionRemove", async (reaction, user) => {
     if (message.author.id === user.id) return;
     // returns if the reaction is not in specified channel or category
     // if (reaction.message.channel.parentID != id.categories.selector) return;
-
-    const roleEmojis = {
-      "⚪": id.roles.whiteTeam,
-      "🔴": id.roles.redTeam,
-      "🟠": id.roles.orangeTeam,
-      "1️⃣": id.roles.teamOne,
-      "2️⃣": id.roles.teamTwo,  
-      "3️⃣": id.roles.teamThree,
-      "4️⃣": id.roles.teamFour,
-      "5️⃣": id.roles.teamFive,
-      "6️⃣": id.roles.teamSix,
-      "7️⃣": id.roles.teamSeven,
-      "8️⃣": id.roles.teamEight,
-      "9️⃣": id.roles.teamNine,
-      "🔟": id.roles.teamTen,
-    };
-
+    
     if (reaction.emoji.name in roleEmojis) {
       await role(
         "remove",
@@ -206,188 +206,13 @@ client.on("messageReactionAdd", async (reaction, user) => {
       
       const ticketMsg = await channel.send(ticketData[ticketType].message);
       await ticketMsg.react("❌");
-    } else if (
-      reaction.emoji.name === "🔴" &&
-      !member.roles.cache.has(id.roles.teamOne)&&
-      !member.roles.cache.has(id.roles.teamTwo)&&
-      !member.roles.cache.has(id.roles.teamThree)&&
-      !member.roles.cache.has(id.roles.teamFour)&&
-      !member.roles.cache.has(id.roles.teamFive)&&
-      !member.roles.cache.has(id.roles.teamSix)&&
-      !member.roles.cache.has(id.roles.teamSeven)&&
-      !member.roles.cache.has(id.roles.teamEight)&&
-      !member.roles.cache.has(id.roles.teamNine)&&
-      !member.roles.cache.has(id.roles.teamTen)&&
-      !member.roles.cache.has(id.roles.orangeTeam)&&
-      !member.roles.cache.has(id.roles.whiteTeam)
-    ) {
-      await role("add", reaction.message, user, id.roles.redTeam);
-    } else if (
-      reaction.emoji.name === "🟠" &&
-      !member.roles.cache.has(id.roles.redTeam)&&
-      !member.roles.cache.has(id.roles.teamOne)&&
-      !member.roles.cache.has(id.roles.teamTwo)&&
-      !member.roles.cache.has(id.roles.teamThree)&&
-      !member.roles.cache.has(id.roles.teamFour)&&
-      !member.roles.cache.has(id.roles.teamFive)&&
-      !member.roles.cache.has(id.roles.teamSix)&&
-      !member.roles.cache.has(id.roles.teamSeven)&&
-      !member.roles.cache.has(id.roles.teamEight)&&
-      !member.roles.cache.has(id.roles.teamNine)&&
-      !member.roles.cache.has(id.roles.teamTen)&&
-      !member.roles.cache.has(id.roles.whiteTeam)
-    )  {
-      await role("add", reaction.message, user, id.roles.orangeTeam);
-    } else if (
-      reaction.emoji.name === "1️⃣" &&
-      !member.roles.cache.has(id.roles.redTeam)&&
-      !member.roles.cache.has(id.roles.teamTwo)&&
-      !member.roles.cache.has(id.roles.teamThree)&&
-      !member.roles.cache.has(id.roles.teamFour)&&
-      !member.roles.cache.has(id.roles.teamFive)&&
-      !member.roles.cache.has(id.roles.teamSix)&&
-      !member.roles.cache.has(id.roles.teamSeven)&&
-      !member.roles.cache.has(id.roles.teamEight)&&
-      !member.roles.cache.has(id.roles.teamNine)&&
-      !member.roles.cache.has(id.roles.teamTen)&&
-      !member.roles.cache.has(id.roles.whiteTeam)
-    )  {
-      await role("add", reaction.message, user, id.roles.teamOne);
-    } else if (
-      reaction.emoji.name === "2️⃣" &&
-      !member.roles.cache.has(id.roles.redTeam)&&
-      !member.roles.cache.has(id.roles.teamOne)&&
-      !member.roles.cache.has(id.roles.teamThree)&&
-      !member.roles.cache.has(id.roles.teamFour)&&
-      !member.roles.cache.has(id.roles.teamFive)&&
-      !member.roles.cache.has(id.roles.teamSix)&&
-      !member.roles.cache.has(id.roles.teamSeven)&&
-      !member.roles.cache.has(id.roles.teamEight)&&
-      !member.roles.cache.has(id.roles.teamNine)&&
-      !member.roles.cache.has(id.roles.teamTen)&&
-      !member.roles.cache.has(id.roles.whiteTeam)
-    )  {
-      await role("add", reaction.message, user, id.roles.teamTwo);
-    } else if (
-      reaction.emoji.name === "3️⃣" &&
-      !member.roles.cache.has(id.roles.redTeam)&&
-      !member.roles.cache.has(id.roles.teamOne)&&
-      !member.roles.cache.has(id.roles.teamTwo)&&
-      !member.roles.cache.has(id.roles.teamFour)&&
-      !member.roles.cache.has(id.roles.teamFive)&&
-      !member.roles.cache.has(id.roles.teamSix)&&
-      !member.roles.cache.has(id.roles.teamSeven)&&
-      !member.roles.cache.has(id.roles.teamEight)&&
-      !member.roles.cache.has(id.roles.teamNine)&&
-      !member.roles.cache.has(id.roles.teamTen)&&
-      !member.roles.cache.has(id.roles.whiteTeam)
-    )  {
-      await role("add", reaction.message, user, id.roles.teamThree);
-    } else if (
-      reaction.emoji.name === "4️⃣" &&
-      !member.roles.cache.has(id.roles.redTeam)&&
-      !member.roles.cache.has(id.roles.teamOne)&&
-      !member.roles.cache.has(id.roles.teamTwo)&&
-      !member.roles.cache.has(id.roles.teamThree)&&
-      !member.roles.cache.has(id.roles.teamFive)&&
-      !member.roles.cache.has(id.roles.teamSix)&&
-      !member.roles.cache.has(id.roles.teamSeven)&&
-      !member.roles.cache.has(id.roles.teamEight)&&
-      !member.roles.cache.has(id.roles.teamNine)&&
-      !member.roles.cache.has(id.roles.teamTen)&&
-      !member.roles.cache.has(id.roles.whiteTeam)
-    )  {
-      await role("add", reaction.message, user, id.roles.teamFour);
-    } else if (
-      reaction.emoji.name === "5️⃣" &&
-      !member.roles.cache.has(id.roles.redTeam)&&
-      !member.roles.cache.has(id.roles.teamOne)&&
-      !member.roles.cache.has(id.roles.teamTwo)&&
-      !member.roles.cache.has(id.roles.teamThree)&&
-      !member.roles.cache.has(id.roles.teamFour)&&
-      !member.roles.cache.has(id.roles.teamSix)&&
-      !member.roles.cache.has(id.roles.teamSeven)&&
-      !member.roles.cache.has(id.roles.teamEight)&&
-      !member.roles.cache.has(id.roles.teamNine)&&
-      !member.roles.cache.has(id.roles.teamTen)&&
-      !member.roles.cache.has(id.roles.whiteTeam)
-    )  {
-      await role("add", reaction.message, user, id.roles.teamFive);
-    } else if (
-      reaction.emoji.name === "6️⃣" &&
-      !member.roles.cache.has(id.roles.redTeam)&&
-      !member.roles.cache.has(id.roles.teamOne)&&
-      !member.roles.cache.has(id.roles.teamTwo)&&
-      !member.roles.cache.has(id.roles.teamThree)&&
-      !member.roles.cache.has(id.roles.teamFour)&&
-      !member.roles.cache.has(id.roles.teamFive)&&
-      !member.roles.cache.has(id.roles.teamSeven)&&
-      !member.roles.cache.has(id.roles.teamEight)&&
-      !member.roles.cache.has(id.roles.teamNine)&&
-      !member.roles.cache.has(id.roles.teamTen)&&
-      !member.roles.cache.has(id.roles.whiteTeam)
-    )  {
-      await role("add", reaction.message, user, id.roles.teamSix);
-    } else if (
-      reaction.emoji.name === "7️⃣" &&
-      !member.roles.cache.has(id.roles.redTeam)&&
-      !member.roles.cache.has(id.roles.teamOne)&&
-      !member.roles.cache.has(id.roles.teamTwo)&&
-      !member.roles.cache.has(id.roles.teamThree)&&
-      !member.roles.cache.has(id.roles.teamFour)&&
-      !member.roles.cache.has(id.roles.teamFive)&&
-      !member.roles.cache.has(id.roles.teamSix)&&
-      !member.roles.cache.has(id.roles.teamEight)&&
-      !member.roles.cache.has(id.roles.teamNine)&&
-      !member.roles.cache.has(id.roles.teamTen)&&
-      !member.roles.cache.has(id.roles.whiteTeam)
-    )  {
-      await role("add", reaction.message, user, id.roles.teamSeven);
-    } else if (
-      reaction.emoji.name === "8️⃣" &&
-      !member.roles.cache.has(id.roles.redTeam)&&
-      !member.roles.cache.has(id.roles.teamOne)&&
-      !member.roles.cache.has(id.roles.teamTwo)&&
-      !member.roles.cache.has(id.roles.teamThree)&&
-      !member.roles.cache.has(id.roles.teamFour)&&
-      !member.roles.cache.has(id.roles.teamFive)&&
-      !member.roles.cache.has(id.roles.teamSix)&&
-      !member.roles.cache.has(id.roles.teamSeven)&&
-      !member.roles.cache.has(id.roles.teamNine)&&
-      !member.roles.cache.has(id.roles.teamTen)&&
-      !member.roles.cache.has(id.roles.whiteTeam)
-    )  {
-      await role("add", reaction.message, user, id.roles.teamEight);
-    } else if (
-      reaction.emoji.name === "9️⃣" &&
-      !member.roles.cache.has(id.roles.redTeam)&&
-      !member.roles.cache.has(id.roles.teamOne)&&
-      !member.roles.cache.has(id.roles.teamTwo)&&
-      !member.roles.cache.has(id.roles.teamThree)&&
-      !member.roles.cache.has(id.roles.teamFour)&&
-      !member.roles.cache.has(id.roles.teamFive)&&
-      !member.roles.cache.has(id.roles.teamSix)&&
-      !member.roles.cache.has(id.roles.teamSeven)&&
-      !member.roles.cache.has(id.roles.teamEight)&&
-      !member.roles.cache.has(id.roles.teamTen)&&
-      !member.roles.cache.has(id.roles.whiteTeam)
-    )  {
-      await role("add", reaction.message, user, id.roles.teamNine);
-    } else if (
-      reaction.emoji.name === "🔟" &&
-      !member.roles.cache.has(id.roles.redTeam)&&
-      !member.roles.cache.has(id.roles.teamOne)&&
-      !member.roles.cache.has(id.roles.teamTwo)&&
-      !member.roles.cache.has(id.roles.teamThree)&&
-      !member.roles.cache.has(id.roles.teamFour)&&
-      !member.roles.cache.has(id.roles.teamFive)&&
-      !member.roles.cache.has(id.roles.teamSix)&&
-      !member.roles.cache.has(id.roles.teamSeven)&&
-      !member.roles.cache.has(id.roles.teamEight)&&
-      !member.roles.cache.has(id.roles.teamNine)&&
-      !member.roles.cache.has(id.roles.whiteTeam)
-    )  {
-      await role("add", reaction.message, user, id.roles.teamTen);
+    } else if (reaction.emoji.name in roleEmojis) {
+      await uniqueRole(
+        "add", 
+        reaction.message, 
+        user, 
+        roleEmojis[reaction.emoji.name]
+        );
     } else if (
       reaction.emoji.name === "❌" &&
       reaction.message.member.guild.me.hasPermission("ADMINISTRATOR")
@@ -482,6 +307,27 @@ async function curseFilter(msg) {
     } catch (err) {
       console.log(err);
     }
+  }
+}
+
+async function uniqueRole(action, msg, user, roleID) {
+  let roles = [id.roles.whiteTeam, id.roles.redTeam, id.roles.orangeTeam, id.roles.teamOne, id.roles.teamTwo, 
+    id.roles.teamThree, id.roles.teamFour, id.roles.teamFive, id.roles.teamSix, id.roles.teamSeven, 
+    id.roles.teamEight, id.roles.teamNine, id.roles.teamTen]
+  
+  roles.splice(roles.indexOf(roleID), 1)
+  
+  const member = await msg.guild.members.fetch(user.id);
+
+  let hasNoRole = true;
+  roles.forEach(r => {
+    if(member.roles.cache.has(r)) {
+      hasNoRole = false
+    }
+  });
+
+  if(hasNoRole) {
+    await role("add", msg, user, roleID);
   }
 }
 
